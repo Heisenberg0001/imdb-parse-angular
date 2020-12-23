@@ -11,8 +11,9 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit, OnDestroy {
-  foundFilm: Movie;
   private _foundFilmSubscription: Subscription;
+
+  public foundFilm: Movie;
 
   constructor( private _dashboardService: DashboardService,
                private _router: Router,
@@ -23,18 +24,18 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     this.foundFilm = this._dashboardService.getFilm();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if(this._foundFilmSubscription){
       this._foundFilmSubscription.unsubscribe();
     }
   }
 
-  onDetails() {
+  public onDetails(): void {
     this._dashboardService.setFilmDetails(this.foundFilm);
     this._router.navigate(['../details'], { relativeTo: this._activatedRoute });
   }
 
-  addToFavorites() {
+  public addToFavorites(): void {
     if(this._dashboardService.addToFavorites()){
       alert("Film: \"" + this._dashboardService.getFilm()['Title'] + "\" was Added to Favorites!");
     } else {
@@ -42,7 +43,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     }
   }
 
-  submitTitleForm(form: NgForm) {
+  public submitTitleForm(form: NgForm): void {
     if( form.valid ){
       this._foundFilmSubscription = this._dashboardService.getFilmByTitle( form.value['t'], form.value['y']).subscribe(
         (film) => {
@@ -53,7 +54,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     }
   }
 
-  submitIdForm(form: NgForm) {
+  public submitIdForm(form: NgForm): void {
     if( form.valid ){
       this._foundFilmSubscription = this._dashboardService.getFilmById( form.value['i']).subscribe(
         (film) => {
@@ -64,7 +65,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     }
   }
 
-  onReset(form: NgForm) {
+  public onReset(form: NgForm): void {
     form.reset();
   }
 }

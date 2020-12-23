@@ -3,45 +3,45 @@
     <h2>Movie: </h2>
     <div class="flex">
       <img
-        src="{{foundFilm['Poster']}}"
+        src="{{getFoundFilm()['Poster']}}"
         alt="Img not found !"
       >
       <ul class="film-info">
         <li class="film-title">
-          <h3 class="film-title-txt">Title: {{foundFilm['Title']}}</h3>
+          <h3 class="film-title-txt">Title: {{getFoundFilm()['Title']}}</h3>
           <hr>
         </li>
         <li class="director">
-          <p>Director:<br> {{foundFilm['Director']}}</p>
+          <p>Director:<br> {{getFoundFilm()['Director']}}</p>
         </li>
         <li class="actors">
-          <p>Actors:<br> {{foundFilm['Actors']}}</p>
+          <p>Actors:<br> {{getFoundFilm()['Actors']}}</p>
         </li>
         <li class="imdbRating">
-          <p>IMDB:<br> {{foundFilm['imdbRating']}}</p>
+          <p>IMDB:<br> {{getFoundFilm()['imdbRating']}}</p>
         </li>
         <li class="genre">
-          <p>Genre:<br> {{foundFilm['Genre']}}</p>
+          <p>Genre:<br> {{getFoundFilm()['Genre']}}</p>
         </li>
         <li class="released">
-          <p>Released:<br> {{foundFilm['Released']}}</p>
+          <p>Released:<br> {{getFoundFilm()['Released']}}</p>
         </li>
         <li class="ratings">
           <div>Ratings:<br>
-            <p *ngFor="let rating of foundFilm['Ratings']">{{rating['Source']}}</p>
+            <p *ngFor="let rating of getFoundFilm()['Ratings']">{{rating['Source']}}</p>
           </div>
         </li>
         <li class="imdbVotes">
-          <p>Votes:<br> {{foundFilm['imdbVotes']}}</p>
+          <p>Votes:<br> {{getFoundFilm()['imdbVotes']}}</p>
         </li>
         <li class="imdbID">
-          <p>ID:<br> {{foundFilm['imdbID']}}</p>
+          <p>ID:<br> {{getFoundFilm()['imdbID']}}</p>
         </li>
         <li class="type">
-          <p>Type:<br> {{foundFilm['Type']}}</p>
+          <p>Type:<br> {{getFoundFilm()['Type']}}</p>
         </li>
         <li class="production">
-          <p>Production:<br> {{foundFilm['Production']}}</p>
+          <p>Production:<br> {{getFoundFilm()['Production']}}</p>
         </li>
       </ul>
     </div>

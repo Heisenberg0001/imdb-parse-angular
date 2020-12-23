@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DashboardService} from '../dashboard.service';
+import {Movie} from '../../Models/movie.model';
 
 @Component({
   selector: 'app-movie-details',
@@ -7,8 +8,9 @@ import {DashboardService} from '../dashboard.service';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-  private _filmDetails: object;
-  canActivateFilmDetail = false;
+  private _filmDetails: Movie;
+
+  public canActivateFilmDetail = false;
 
   constructor( private _dashboardService: DashboardService) { }
 
@@ -19,7 +21,7 @@ export class MovieDetailsComponent implements OnInit {
     }
   }
 
-  get foundFilm() {
+  public getFoundFilm(): Movie {
     return this._filmDetails;
   }
 }

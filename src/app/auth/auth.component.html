@@ -26,9 +26,9 @@
         >
       </div>
       <div>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{ loginMode ? 'Login' : 'Sign up' }}</button> |
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{ getLoginMode() ? 'Login' : 'Sign up' }}</button> |
         <button type="button" class="btn btn-primary" (click)="onSwitchMode()">
-          Switch to {{ loginMode ? 'Sign Up' : 'Login'}}</button>
+          Switch to {{ getLoginMode() ? 'Sign Up' : 'Login'}}</button>
       </div>
       <div *ngIf="isIncorrect">
         <p class="error">Email or Password were not correct!</p>

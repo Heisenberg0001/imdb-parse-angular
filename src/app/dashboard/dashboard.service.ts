@@ -10,8 +10,8 @@ import {Movie} from '../Models/movie.model';
 export class DashboardService {
   private _foundFilm: Movie;
   private _filmDetails: Movie;
-  private _favoriteFilms: Movie[] = [
-    {
+  private _favoriteFilms: Movie[] =
+    [{
       "Title":"Interstellar",
       "Year":"2014",
       "Rated":"PG-13",
@@ -39,7 +39,7 @@ export class DashboardService {
       "Production":"Syncopy, Lynda Obst Productions",
       "Website":"N/A",
       "Response":"True"},
-    {"Title":"3:10 to Yuma",
+     {"Title":"3:10 to Yuma",
       "Year":"2007",
       "Rated":"R",
       "Released":"07 Sep 2007",
@@ -65,24 +65,24 @@ export class DashboardService {
 
   constructor( private _http: HttpClient) {}
 
-  getFilm():Movie {
+  public getFilm(): Movie {
     return this._foundFilm;
   }
 
-  setFilm( film:Movie ) {
+  public setFilm( film: Movie ): void {
     this._foundFilm = film;
   }
 
-  getFilmDetails():Movie {
+  public getFilmDetails(): Movie {
     return this._filmDetails;
   }
 
-  setFilmDetails ( film:Movie ) {
+  public setFilmDetails ( film: Movie ): void {
     this._filmDetails = film;
   }
 
   //favorite movies functionality
-  addToFavorites():boolean {
+  public addToFavorites(): boolean {
     if(this.compareObjects(this.getFilm())){
       return false;
     }
@@ -90,7 +90,7 @@ export class DashboardService {
     return true;
   }
 
-  compareObjects( firstObj: Movie ):boolean {
+  public compareObjects( firstObj: Movie ): boolean {
     for( let i = 0; i < this._favoriteFilms.length; i++) {
       if(firstObj['Title'] === this._favoriteFilms[i]['Title']) {
         return true;
@@ -100,25 +100,25 @@ export class DashboardService {
     return false;
   }
 
-  onGetFavoriteFilms() {
+  public onGetFavoriteFilms(): Movie[] {
     return [...this._favoriteFilms];
   }
 
-  onDeleteFavoriteFilm(index: number) {
+  public onDeleteFavoriteFilm( index: number ): void {
     this._favoriteFilms.splice(index,1);
   }
 
   //movie detail functionality
-  passToDetails(film: Movie) {
+  public passToDetails( film: Movie ): void {
     this._filmDetails = film;
   }
 
   //top movies functionality
-  getFilmByTitle( title:string, year:string = ''): Observable<Movie> {
+  public getFilmByTitle( title: string, year: string = ''): Observable<Movie> {
     return this._http.get<Movie>(`http://www.omdbapi.com/?t=${title}&y=${year}&apikey=a62f4958`);
   }
 
-  getFilmById( id:string ): Observable<Movie> {
+  public getFilmById( id: string ): Observable<Movie> {
     return this._http.get<Movie>(`http://www.omdbapi.com/?i=${id}&apikey=a62f4958`);
   }
 }

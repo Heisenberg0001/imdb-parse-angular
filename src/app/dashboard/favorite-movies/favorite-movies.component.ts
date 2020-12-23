@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DashboardService} from '../dashboard.service';
+import {Movie} from '../../Models/movie.model';
 
 @Component({
   selector: 'app-favorite-movies',
@@ -13,19 +14,19 @@ export class FavoriteMoviesComponent implements OnInit {
   constructor(private _router: Router,
               private _activatedRoute: ActivatedRoute,
               private _dashboardService: DashboardService
-              ) { }
+              ) {}
 
   ngOnInit(): void {}
 
-  get getFavoriteFilms() {
+  public getFavoriteFilms(): Movie[] {
     return this._dashboardService.onGetFavoriteFilms();
   }
 
-  onDelete(index: number) {
+  public onDelete(index: number) {
     this._dashboardService.onDeleteFavoriteFilm(index);
   }
 
-  onDetails(index: number) {
+  public onDetails(index: number): void {
     this._dashboardService.passToDetails(this.getFavoriteFilms[index]);
     this._router.navigate(['../details'], { relativeTo: this._activatedRoute } );
   }

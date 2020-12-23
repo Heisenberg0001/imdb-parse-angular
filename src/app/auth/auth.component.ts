@@ -12,36 +12,35 @@ import {Credentials} from '../Models/credentials.model';
 
 export class AuthComponent implements OnInit {
   private isLoginMode = true;
-  isIncorrect = false;
   private _email: string;
   private _passwd: string;
+
+  public isIncorrect = false;
 
 
   constructor( private _router: Router,
                private authService: AuthService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  get loginMode() {
+  public getLoginMode(): boolean {
     return this.isLoginMode;
   }
 
-  onSwitchMode() {
+  public onSwitchMode(): void {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  get email() {
+  public getEmail(): string {
     return this._email;
   }
 
-  get passwd() {
+  public getPasswd(): string {
     return this._passwd;
   }
 
-  onSubmit( form: NgForm ) {
+  public onSubmit( form: NgForm ): void {
 
     if( form.invalid ) {
       return;

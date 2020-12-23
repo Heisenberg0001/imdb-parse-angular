@@ -19,15 +19,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFavoritesClicked() {
+  public onFavoritesClicked(): void {
     this._router.navigate(['favorites'], { relativeTo: this._activatedRoute});
   }
 
-  onTopMoviesClicked() {
+  public onTopMoviesClicked(): void {
     this._router.navigate(['top-movies'], { relativeTo: this._activatedRoute});
   }
 
-  onLogoutClicked() {
+  public onLogoutClicked(): void {
     this._router.navigate(['/login']);
   }
 }

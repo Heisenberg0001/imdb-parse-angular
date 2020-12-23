@@ -22,6 +22,5 @@ export class DashboardGuard implements CanActivate {
     } else {
         return true;
     }
-
   }
 }
