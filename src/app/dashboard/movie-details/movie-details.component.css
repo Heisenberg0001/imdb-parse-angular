@@ -1,0 +1,15 @@
+.row {
+  height: 65vh;
+  margin-top: 15vh;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.film-info {
+  margin-left: 25px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}

@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-xs-12">
+    <fieldset>
+      <legend>Search By Title</legend>
+    </fieldset>
+    <form #tForm="ngForm" (ngSubmit)="submitTitleForm(tForm)">
+      <label class="control-label" for="t">Title:</label>
+      <input
+        type="text"
+        id="t"
+        name="t"
+        class="input-small"
+        ngModel
+        required
+      >
+      &nbsp;&nbsp;
+      <label class="control-label" for="y">Year:</label>
+      <input
+        type="number"
+        id="y"
+        name="y"
+        class="input-small"
+        style="width: 100px;"
+        ngModel
+      >
+      &nbsp;&nbsp;
+      <button id="search-by-title-button" type="submit" class="btn btn-primary" [disabled]="tForm.invalid">Search</button> |
+      <button id="search-by-title-reset" type="reset" class="btn btn-danger" (click)="onReset(tForm)">Reset</button>
+    </form>
+    <br><hr><br>
+    <fieldset>
+      <legend>By ID</legend>
+    </fieldset>
+    <form #iForm="ngForm" (ngSubmit)="submitIdForm(iForm)">
+      <label class="control-label" for="i">ID:</label>
+      <input
+        type="text"
+        id="i"
+        name="i"
+        class="input-small"
+        placeholder="IMDb ID"
+        ngModel
+        required
+      >
+      &nbsp; &nbsp;
+      <button id="search-by-id-button" type="submit" class="btn btn-primary" [disabled]="iForm.invalid">Search</button> |
+      <button id="search-by-id-reset" type="reset" class="btn btn-danger" (click)="onReset(iForm)">Reset</button>
+    </form>
+  </div>
+  <div class="col-xs-12" *ngIf="foundFilm">
+    <br><hr>
+    <h2>Movie: </h2>
+    <div class="flex">
+      <img
+        src="{{foundFilm['Poster']}}"
+        alt="Img not found !"
+        (click)="onDetails()"
+      >
+        <ul class="film-info">
+          <li class="film-title">
+            <h3 class="film-title-txt">Title: {{foundFilm['Title']}}</h3>
+            <hr>
+          </li>
+          <li class="director">
+            <p>Director:<br> {{foundFilm['Director']}}</p>
+          </li>
+          <li class="actors">
+            <p>Actors:<br> {{foundFilm['Actors']}}</p>
+          </li>
+          <li class="imdbRating">
+            <p>IMDB:<br> {{foundFilm['imdbRating']}}</p>
+          </li>
+          <li class="genre">
+            <p>Genre:<br> {{foundFilm['Genre']}}</p>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary" (click)="addToFavorites()">Add To Favorites</button>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <div class="col-xs-12 film-not-selected">
+    <hr>
+    <h3 style="text-align: center; color: red">Film is not selected !</h3>
+  </div>
+</div>

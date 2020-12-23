@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="form-group">
+        <label for="email">E-Mail: </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          ngModel
+          email
+          required
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          ngModel
+          required
+          minlength="6"
+        >
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{ loginMode ? 'Login' : 'Sign up' }}</button> |
+        <button type="button" class="btn btn-primary" (click)="onSwitchMode()">
+          Switch to {{ loginMode ? 'Sign Up' : 'Login'}}</button>
+      </div>
+      <div *ngIf="isIncorrect">
+        <p class="error">Email or Password were not correct!</p>
+      </div>
+    </form>
+  </div>
+</div>

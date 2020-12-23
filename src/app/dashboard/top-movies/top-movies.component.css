@@ -1,0 +1,32 @@
+.row {
+  height: 65vh;
+  margin-top: 15vh;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.film-info {
+  margin-left: 20px;
+}
+.film-info>div {
+  margin-bottom: 10px;
+}
+
+p {
+  font-weight: bold;
+}
+input {
+  margin-right: 5px;
+}
+img {
+  cursor: pointer;
+}
+ul {
+   list-style: none;
+   padding: 0;
+}
+
+button[type='button']{
+  margin-top: 20px;
+}

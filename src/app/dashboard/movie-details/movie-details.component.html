@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-12" *ngIf="canActivateFilmDetail">
+    <h2>Movie: </h2>
+    <div class="flex">
+      <img
+        src="{{foundFilm['Poster']}}"
+        alt="Img not found !"
+      >
+      <ul class="film-info">
+        <li class="film-title">
+          <h3 class="film-title-txt">Title: {{foundFilm['Title']}}</h3>
+          <hr>
+        </li>
+        <li class="director">
+          <p>Director:<br> {{foundFilm['Director']}}</p>
+        </li>
+        <li class="actors">
+          <p>Actors:<br> {{foundFilm['Actors']}}</p>
+        </li>
+        <li class="imdbRating">
+          <p>IMDB:<br> {{foundFilm['imdbRating']}}</p>
+        </li>
+        <li class="genre">
+          <p>Genre:<br> {{foundFilm['Genre']}}</p>
+        </li>
+        <li class="released">
+          <p>Released:<br> {{foundFilm['Released']}}</p>
+        </li>
+        <li class="ratings">
+          <div>Ratings:<br>
+            <p *ngFor="let rating of foundFilm['Ratings']">{{rating['Source']}}</p>
+          </div>
+        </li>
+        <li class="imdbVotes">
+          <p>Votes:<br> {{foundFilm['imdbVotes']}}</p>
+        </li>
+        <li class="imdbID">
+          <p>ID:<br> {{foundFilm['imdbID']}}</p>
+        </li>
+        <li class="type">
+          <p>Type:<br> {{foundFilm['Type']}}</p>
+        </li>
+        <li class="production">
+          <p>Production:<br> {{foundFilm['Production']}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-xs-12" *ngIf="!canActivateFilmDetail">
+    <h3 style="color: red; text-align: center">No Film is Selected !</h3>
+  </div>
+</div>
+
