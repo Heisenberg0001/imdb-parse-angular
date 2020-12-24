@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DashboardService} from '../dashboard.service';
-import {Movie} from '../../Models/movie.model';
+import {Movie} from '../../shared/models/movie.model';
 
 @Component({
   selector: 'app-favorite-movies',

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
-import {Credentials} from '../Models/credentials.model';
+import {Credentials} from '../shared/models/credentials.model';
 
 @Component({
   selector: 'app-auth',

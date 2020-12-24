@@ -26,7 +26,11 @@
       &nbsp;&nbsp;
       <button id="search-by-title-button" type="submit" class="btn btn-primary" [disabled]="tForm.invalid">Search</button> |
       <button id="search-by-title-reset" type="reset" class="btn btn-danger" (click)="onReset(tForm)">Reset</button>
+      <div class="check-title-value" *ngIf="!correctTitleFiledValue">
+        <p style="color: red; text-align: left">Enter Correct Value (e.g. 3:10 to Yuma) </p>
+      </div>
     </form>
+
     <br><hr><br>
     <fieldset>
       <legend>By ID</legend>
@@ -45,6 +49,9 @@
       &nbsp; &nbsp;
       <button id="search-by-id-button" type="submit" class="btn btn-primary" [disabled]="iForm.invalid">Search</button> |
       <button id="search-by-id-reset" type="reset" class="btn btn-danger" (click)="onReset(iForm)">Reset</button>
+      <div class="check-id-value" *ngIf="!correctIdFiledValue">
+        <p style="color: red; text-align: left">Enter Correct Value (e.g. tt1285016) </p>
+      </div>
     </form>
   </div>
   <div class="col-xs-12" *ngIf="foundFilm">
@@ -79,7 +86,7 @@
         </ul>
     </div>
   </div>
-  <div class="col-xs-12 film-not-selected">
+  <div class="col-xs-12 film-not-selected" *ngIf="!foundFilm">
     <hr>
     <h3 style="text-align: center; color: red">Film is not selected !</h3>
   </div>

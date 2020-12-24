@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DashboardService} from '../dashboard.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {Movie} from '../../Models/movie.model';
+import {Movie} from '../../shared/models/movie.model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -14,6 +14,8 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
   private _foundFilmSubscription: Subscription;
 
   public foundFilm: Movie;
+  public correctIdFiledValue = true;
+  public correctTitleFiledValue = true;
 
   constructor( private _dashboardService: DashboardService,
                private _router: Router,
@@ -45,6 +47,19 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
 
   public submitTitleForm(form: NgForm): void {
     if( form.valid ){
+
+      console.log("Before: " + form.value['t']);
+
+
+      form.value['t'] = form.value['t'].replace(/^(\s)+|[^a-zA-Z\d\s!:-]/g, '');
+
+      console.log("After: " + form.value['t']);
+
+      if (form.value['t'] === '') {
+        this.correctTitleFiledValue = false;
+        return;
+      }
+
       this._foundFilmSubscription = this._dashboardService.getFilmByTitle( form.value['t'], form.value['y']).subscribe(
         (film) => {
           this.foundFilm = film;
@@ -56,6 +71,12 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
 
   public submitIdForm(form: NgForm): void {
     if( form.valid ){
+
+      if (!this.testOMDbIdFormat(form.value['i'])) {
+        this.correctIdFiledValue = false;
+        return;
+      }
+
       this._foundFilmSubscription = this._dashboardService.getFilmById( form.value['i']).subscribe(
         (film) => {
           this.foundFilm = film;
@@ -63,6 +84,10 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
         }
       )
     }
+  }
+
+  public testOMDbIdFormat(id: string): boolean {
+    return /^(tt)[\d]+/.test(id);
   }
 
   public onReset(form: NgForm): void {
